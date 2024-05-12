@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/homeFragment2"
+        android:id="@+id/petsFragment"
         android:icon="@drawable/ic_pet"
         tools:ignore="MenuTitle" />
     <item
-        android:id="@+id/basketFragment"
+        android:id="@+id/calendarFragment"
         android:icon="@drawable/ic_calendar"
         tools:ignore="MenuTitle" />
     <item

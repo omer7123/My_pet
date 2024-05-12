@@ -26,7 +26,7 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.authFragment)
         }
         binding.regBtn.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().navigate(R.id.petsFragment)
         }
     }
 }

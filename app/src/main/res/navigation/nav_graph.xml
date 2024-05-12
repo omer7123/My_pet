@@ -19,4 +19,13 @@
         android:name="com.example.mypet.ui.homeFragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/petsFragment"
+        android:name="com.example.mypet.ui.petsFragment.PetsFragment"
+        android:label="PetsFragment" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.mypet.ui.calendarFragment.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
 </navigation>
