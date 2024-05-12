@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/homeFragment2"
+        android:icon="@drawable/ic_pet"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/basketFragment"
+        android:icon="@drawable/ic_calendar"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_menu"
+        tools:ignore="MenuTitle" />
+    <item
+        android:id="@+id/accountFragment"
+        android:icon="@drawable/ic_profile"
+        tools:ignore="MenuTitle" />
+
+</menu>
