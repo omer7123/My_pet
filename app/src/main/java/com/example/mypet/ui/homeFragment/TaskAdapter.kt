@@ -11,7 +11,6 @@ class TaskAdapter(
     private val onItemClickListener: (task: TaskEntity) -> Unit
 ) :
     ListAdapter<TaskEntity, TaskAdapter.ViewHolder>(TaskDiffCallback()) {
-
     inner class ViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: TaskEntity?) = with(binding) {
