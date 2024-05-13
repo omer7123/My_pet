@@ -15,7 +15,9 @@ class PetAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: PetEntity) = with(binding) {
             titleTv.text = item.name
-
+            root.setOnClickListener {
+                onItemClickListener(item)
+            }
         }
     }
 

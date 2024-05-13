@@ -28,4 +28,14 @@
         android:name="com.example.mypet.ui.calendarFragment.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/detailPetFragment"
+        android:name="com.example.mypet.ui.detailPetFragment.DetailPetFragment"
+        android:label="fragment_detail_pet"
+        tools:layout="@layout/fragment_detail_pet" />
+    <fragment
+        android:id="@+id/createPetFragment"
+        android:name="com.example.mypet.ui.createPetFragment.CreatePetFragment"
+        android:label="fragment_create_pet"
+        tools:layout="@layout/fragment_create_pet" />
 </navigation>
