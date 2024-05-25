@@ -1,5 +1,7 @@
 package com.example.mypet.domain.entity
 
+import java.io.Serializable
+
 data class Animal(
     val id:String,
     val name: String
@@ -43,4 +45,18 @@ data class PetItem(
     val name: String,
     val owner_id: String,
     val weight: Int
+) : Serializable
+
+data class PetItemUpdate(
+    val id: String,
+    val name: String,
+    val age: Int,
+    val gender: String,
+    val birthday: Int,
+    val animal_id: String,
+    val breed_id: String,
+    val weight: Int,
+    val height: Int,
+    val about: String,
+    val owner: Owner,
 )

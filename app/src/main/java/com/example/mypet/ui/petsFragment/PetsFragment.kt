@@ -30,7 +30,7 @@ class PetsFragment : Fragment() {
 
     private fun clickListener(petEntity: PetItem) {
         val bundle = Bundle()
-//        bundle.putSerializable("res", petEntity)
+        bundle.putSerializable("res", petEntity)
         findNavController().navigate(R.id.detailPetFragment, bundle)
     }
 
@@ -45,7 +45,6 @@ class PetsFragment : Fragment() {
         }
         return binding.root
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,9 +70,11 @@ class PetsFragment : Fragment() {
                 binding.progressCircular.isVisible = false
                 requireContext().showToast(state.msg)
             }
+
             PetsState.Loading -> {
                 binding.progressCircular.isVisible = true
             }
+
             is PetsState.Success -> {
                 binding.progressCircular.isVisible = false
                 adapter.submitList(state.data)

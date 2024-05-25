@@ -10,6 +10,7 @@ import com.example.mypet.domain.entity.Breed
 import com.example.mypet.domain.entity.Login
 import com.example.mypet.domain.entity.NewPet
 import com.example.mypet.domain.entity.PetItem
+import com.example.mypet.domain.entity.PetItemUpdate
 import com.example.mypet.domain.entity.Register
 import com.example.mypet.domain.entity.TokenAuth
 import com.example.mypet.domain.entity.User
@@ -45,6 +46,10 @@ class MainRepositoryImpl(private val dataSource: RemoteDataSource, private val c
 
     override suspend fun addPet(pet: NewPet): Resource<PetItem> {
         return dataSource.addPet(pet)
+    }
+
+    override suspend fun updatePet(pet: PetItemUpdate): Resource<PetItem> {
+        return dataSource.updatePet(pet)
     }
 
     override suspend fun saveToken(token: String) {

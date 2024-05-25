@@ -1,5 +1,6 @@
 package com.example.mypet.ui.refactorPetFragment
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,9 +14,14 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.mypet.databinding.FragmentRefactorPetBinding
 import com.example.mypet.domain.entity.Animal
+import com.example.mypet.domain.entity.Breed
+import com.example.mypet.domain.entity.Owner
 import com.example.mypet.domain.entity.PetEntity
+import com.example.mypet.domain.entity.PetItem
+import com.example.mypet.domain.entity.PetItemUpdate
 import com.example.mypet.presentation.refactorPetFragment.RefactorPetState
 import com.example.mypet.presentation.refactorPetFragment.RefactorPetViewModel
+import com.example.mypet.util.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RefactorPetFragment : Fragment() {
@@ -23,7 +29,11 @@ class RefactorPetFragment : Fragment() {
     private lateinit var binding: FragmentRefactorPetBinding
 
     private val viewModel: RefactorPetViewModel by viewModel()
+    private lateinit var pet: PetItem
+    private var selectedIdAnimal: String = ""
+    private var selectedIdBreed: String = ""
 
+    private var pet_id = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getAnimals()
@@ -35,6 +45,17 @@ class RefactorPetFragment : Fragment() {
     ): View {
         binding = FragmentRefactorPetBinding.inflate(layoutInflater, container, false)
 
+        arguments?.run {
+            pet = this.getSerializable("res") as PetItem
+            pet_id = pet.id
+            binding.nameTv.setText(pet.name)
+            binding.ageTv.setText(pet.age.toString())
+            binding.heightTv.setText(pet.height.toString())
+            binding.weightTv.setText(pet.weight.toString())
+            selectedIdAnimal = pet.animal_id
+            selectedIdBreed = pet.breed_id
+
+        }
         viewModel.screenState.observe(viewLifecycleOwner) { state ->
             render(state)
         }
@@ -43,31 +64,48 @@ class RefactorPetFragment : Fragment() {
 
     private fun render(state: RefactorPetState) {
         when (state) {
-            is RefactorPetState.Error -> {}
+            is RefactorPetState.Error -> requireContext().showToast(state.msg)
+
             RefactorPetState.Loading -> {}
+
             is RefactorPetState.SuccessAnimal -> {
                 Log.e("Animals", state.animals.toString())
                 val adapter = ArrayAdapter(
                     requireContext(),
-                    android.R.layout.simple_spinner_item,
+                    R.layout.simple_spinner_item,
                     state.animals
                 )
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
                 binding.animalSpinner.adapter = adapter
+
+                val selectedIndex = findItemIndex(state.animals, selectedIdAnimal)
+                if (selectedIndex >= 0) {
+                    binding.animalSpinner.setSelection(selectedIndex)
+                }
             }
 
             is RefactorPetState.SuccessBreed -> {
                 Log.e("Breeds", state.breeds.toString())
                 val adapter = ArrayAdapter(
                     requireContext(),
-                    android.R.layout.simple_spinner_item,
+                    R.layout.simple_spinner_item,
                     state.breeds
                 )
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
                 binding.spinnerBreed.adapter = adapter
+
+                val selectedIndex = findItemIndexBreed(state.breeds, selectedIdBreed)
+                if (selectedIndex >= 0) {
+                    binding.spinnerBreed.setSelection(selectedIndex)
+                }
+            }
+
+            is RefactorPetState.Success -> {
+
             }
         }
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -97,6 +135,7 @@ class RefactorPetFragment : Fragment() {
 
     private fun initListener() {
         binding.addBtn.setOnClickListener {
+
             val name = binding.nameTv.text.toString()
 //            val breed = binding.breedTv.text.toString()
             val age = binding.ageTv.text.toString()
@@ -107,10 +146,25 @@ class RefactorPetFragment : Fragment() {
             val weightInt = if (weight.isNotEmpty()) weight.toIntOrNull() else null
             val heightInt = if (height.isNotEmpty()) height.toIntOrNull() else null
 
-            val result = PetEntity("uuidString", name, "breed", ageInt, weightInt, heightInt)
-            setFragmentResult("res", bundleOf("res" to result))
-            findNavController().popBackStack()
+            val animal = binding.animalSpinner.selectedItem as Animal
+            val breed = binding.spinnerBreed.selectedItem as Breed
+            val animal_id = animal.id
+            val breed_id = breed.id
+            val result = PetItemUpdate(pet_id, name, age.toInt(),"Мужской",0,
+                animal_id, breed_id, 0, 0,"", Owner("")
+            )
+
+            viewModel.updatePet(result)
+//            setFragmentResult("res", bundleOf("res" to result))
+//            findNavController().popBackStack()
         }
     }
 
+    private fun findItemIndex(itemList: List<Animal>, id: String): Int {
+        return itemList.indexOfFirst { it.id == id }
+    }
+
+    private fun findItemIndexBreed(itemList: List<Breed>, id: String): Int {
+        return itemList.indexOfFirst { it.id == id }
+    }
 }

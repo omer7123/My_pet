@@ -6,6 +6,7 @@ import com.example.mypet.domain.entity.Breed
 import com.example.mypet.domain.entity.Login
 import com.example.mypet.domain.entity.NewPet
 import com.example.mypet.domain.entity.PetItem
+import com.example.mypet.domain.entity.PetItemUpdate
 import com.example.mypet.domain.entity.Register
 import com.example.mypet.domain.entity.TokenAuth
 import com.example.mypet.domain.entity.User
@@ -34,5 +35,9 @@ class RemoteDataSource(val petApi: PetApi) : BaseDataSource() {
 
     suspend fun addPet(pet: NewPet): Resource<PetItem> = getResult {
         petApi.addPet(pet)
+    }
+
+    suspend fun updatePet(pet: PetItemUpdate): Resource<PetItem> = getResult {
+        petApi.updatePet(pet)
     }
 }

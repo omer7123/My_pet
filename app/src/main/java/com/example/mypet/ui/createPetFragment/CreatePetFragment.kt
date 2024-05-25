@@ -54,10 +54,17 @@ class CreatePetFragment : Fragment() {
     private fun initListener() {
         binding.addBtn.setOnClickListener {
             val name = binding.nameTv.text.toString()
-            val age = binding.ageTv.text.toString().toInt()
-            val gender = binding.genderSpinner.selectedItem.toString()
+            try {
+                val age = binding.ageTv.text.toString().toInt()
+                val gender = binding.genderSpinner.selectedItem.toString()
 
-            viewModel.addPet(NewPet(name, age, gender, Owner("")))
+                viewModel.addPet(NewPet(name, age, gender, Owner("")))
+            }catch (e: Exception){
+                when(e){
+                    is NumberFormatException->requireContext().showToast("Возраст должен быть целочисленным")
+                }
+            }
+
         }
     }
 
