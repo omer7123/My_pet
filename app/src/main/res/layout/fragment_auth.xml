@@ -30,6 +30,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon_iv" />
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_tv" />
 
     <androidx.cardview.widget.CardView
         android:layout_marginTop="70dp"
@@ -68,13 +76,24 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/reg_tv"
                 android:textSize="12sp"
                 android:textColor="@color/intteractive_text"
                 android:text="Нет аккаунта? Зарегистрироваться"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/error_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:textColor="#C61818"
+                android:textSize="10sp"
+                tools:text="Есть аккаунт? Войти" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_btn"
                 android:layout_marginTop="26dp"
                 android:text="Войти"
                 android:textAllCaps="false"

@@ -14,6 +14,7 @@ import com.example.mypet.databinding.FragmentPetsBinding
 import com.example.mypet.domain.entity.PetEntity
 
 class PetsFragment : Fragment() {
+
     private lateinit var binding: FragmentPetsBinding
     private val list = mutableListOf(
         PetEntity("0", "Саня", "Корги", 20, 40, 190),

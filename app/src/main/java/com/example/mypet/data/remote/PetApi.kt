@@ -1,5 +1,7 @@
 package com.example.mypet.data.remote
 
+import com.example.mypet.domain.entity.Auth
+import com.example.mypet.domain.entity.Login
 import com.example.mypet.domain.entity.Register
 import com.example.mypet.domain.entity.User
 import retrofit2.Response
@@ -17,4 +19,9 @@ interface PetApi {
         @Body registerModel: Register
     ): Response<User>
 
+    @Headers("ngrok-skip-browser-warning: true")
+    @POST("/api/users/login")
+    suspend fun auth(
+        @Body authModel: Login
+    ): Response<User>
 }

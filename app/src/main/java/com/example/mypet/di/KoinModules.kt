@@ -4,5 +4,6 @@ val koinModules =
     listOf(
         networkModule,
         repoModules,
-        remoteDataSource
+        remoteDataSource,
+        viewModule
     )

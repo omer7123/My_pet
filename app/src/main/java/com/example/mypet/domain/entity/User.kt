@@ -18,3 +18,12 @@ data class User(
     val token: String,
     val role: String
 )
+
+data class TokenAuth(
+    val token: String
+)
+
+data class Login(
+    val auth: Auth,
+    val token_auth: TokenAuth
+)
