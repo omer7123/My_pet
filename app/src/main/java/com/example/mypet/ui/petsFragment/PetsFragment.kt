@@ -6,29 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mypet.R
 import com.example.mypet.databinding.FragmentPetsBinding
 import com.example.mypet.domain.entity.PetEntity
+import com.example.mypet.domain.entity.PetItem
+import com.example.mypet.presentation.petsFragment.PetsState
+import com.example.mypet.presentation.petsFragment.PetsViewModel
+import com.example.mypet.util.showToast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PetsFragment : Fragment() {
 
     private lateinit var binding: FragmentPetsBinding
-    private val list = mutableListOf(
-        PetEntity("0", "Саня", "Корги", 20, 40, 190),
-        PetEntity("1", "Илья", "Мопс", 19, 64, 172),
-        PetEntity("2", "Макс", "Корейская овчарка", 19, 59, 120),
-        PetEntity("3", "Иса", "Бегемотская", 19, 89, 169),
-        PetEntity("4", "Паша", "Русская борзая", 19, 75, 177)
-    )
+
+    private val viewModel: PetsViewModel by viewModel()
+
 
     private val adapter = PetAdapter(this::clickListener)
 
-    private fun clickListener(petEntity: PetEntity) {
+    private fun clickListener(petEntity: PetItem) {
         val bundle = Bundle()
-        bundle.putSerializable("res", petEntity)
+//        bundle.putSerializable("res", petEntity)
         findNavController().navigate(R.id.detailPetFragment, bundle)
     }
 
@@ -37,23 +39,45 @@ class PetsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPetsBinding.inflate(layoutInflater, container, false)
+
+        viewModel.screenState.observe(viewLifecycleOwner) { state ->
+            render(state)
+        }
         return binding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.petRv.layoutManager = LinearLayoutManager(requireContext())
         binding.petRv.adapter = adapter
-        adapter.submitList(list)
+
         binding.addBtn.setOnClickListener {
             findNavController().navigate(R.id.createPetFragment)
         }
+        viewModel.getPets()
 
-        setFragmentResultListener("res") { _, result ->
-            val pet = result.getSerializable("res") as PetEntity
-            list.add(pet)
-            adapter.submitList(list)
-            Log.i("dsds", list.toString())
+//        setFragmentResultListener("res") { _, result ->
+//            val pet = result.getSerializable("res") as PetEntity
+//            list.add(pet)
+//            adapter.submitList(list)
+//        }
+    }
+
+    private fun render(state: PetsState) {
+        when (state) {
+            is PetsState.Error -> {
+                binding.progressCircular.isVisible = false
+                requireContext().showToast(state.msg)
+            }
+            PetsState.Loading -> {
+                binding.progressCircular.isVisible = true
+            }
+            is PetsState.Success -> {
+                binding.progressCircular.isVisible = false
+                adapter.submitList(state.data)
+            }
         }
     }
 }

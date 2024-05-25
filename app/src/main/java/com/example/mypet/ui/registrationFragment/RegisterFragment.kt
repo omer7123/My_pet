@@ -2,15 +2,13 @@ package com.example.mypet.ui.registrationFragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mypet.R
-import com.example.mypet.data.repository.MainRepositoryImpl
 import com.example.mypet.databinding.FragmentRegisterBinding
 import com.example.mypet.domain.entity.Auth
 import com.example.mypet.domain.entity.Login
@@ -18,7 +16,6 @@ import com.example.mypet.domain.entity.Register
 import com.example.mypet.domain.entity.TokenAuth
 import com.example.mypet.presentation.registrationFragment.RegisterState
 import com.example.mypet.presentation.registrationFragment.RegisterViewModel
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterFragment : Fragment() {

@@ -46,6 +46,11 @@
         android:label="fragment_detail_pet"
         tools:layout="@layout/fragment_detail_pet" />
     <fragment
+        android:id="@+id/refactorPetFragment"
+        android:name="com.example.mypet.ui.refactorPetFragment.RefactorPetFragment"
+        android:label="fragment_create_pet"
+        tools:layout="@layout/fragment_refactor_pet" />
+    <fragment
         android:id="@+id/createPetFragment"
         android:name="com.example.mypet.ui.createPetFragment.CreatePetFragment"
         android:label="fragment_create_pet"

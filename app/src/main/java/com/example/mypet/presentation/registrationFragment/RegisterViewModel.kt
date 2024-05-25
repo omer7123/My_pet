@@ -1,5 +1,6 @@
 package com.example.mypet.presentation.registrationFragment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -41,6 +42,7 @@ class RegisterViewModel(private val repository: MainRepository) : ViewModel() {
             when(val res = repository.auth(data)){
                 is Resource.Success->{
                     saveToken(res.data.token)
+                    Log.e("TOKEN", res.data.token)
                     _screenState.value = RegisterState.Success(res.data)
 
                 }

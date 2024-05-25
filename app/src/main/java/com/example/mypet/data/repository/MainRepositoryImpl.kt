@@ -5,8 +5,13 @@ import android.content.SharedPreferences
 import com.example.mypet.data.remote.RemoteDataSource
 import com.example.mypet.data.remote.result.Resource
 import com.example.mypet.domain.MainRepository
+import com.example.mypet.domain.entity.Animal
+import com.example.mypet.domain.entity.Breed
 import com.example.mypet.domain.entity.Login
+import com.example.mypet.domain.entity.NewPet
+import com.example.mypet.domain.entity.PetItem
 import com.example.mypet.domain.entity.Register
+import com.example.mypet.domain.entity.TokenAuth
 import com.example.mypet.domain.entity.User
 
 class MainRepositoryImpl(private val dataSource: RemoteDataSource, private val context: Context): MainRepository {
@@ -24,6 +29,22 @@ class MainRepositoryImpl(private val dataSource: RemoteDataSource, private val c
 
     override suspend fun getToken(): String {
         return sharedPref.getString(TOKEN, "").toString()
+    }
+
+    override suspend fun getPets(tokenAuth: TokenAuth): Resource<List<PetItem>> {
+        return dataSource.getPets(tokenAuth)
+    }
+
+    override suspend fun getAnimals(): Resource<List<Animal>> {
+        return dataSource.getAnimals()
+    }
+
+    override suspend fun getBreeds(animalId: String): Resource<List<Breed>> {
+        return dataSource.getBreeds(animalId)
+    }
+
+    override suspend fun addPet(pet: NewPet): Resource<PetItem> {
+        return dataSource.addPet(pet)
     }
 
     override suspend fun saveToken(token: String) {

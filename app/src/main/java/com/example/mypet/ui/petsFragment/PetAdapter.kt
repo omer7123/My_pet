@@ -6,14 +6,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypet.databinding.ItemPetBinding
 import com.example.mypet.domain.entity.PetEntity
+import com.example.mypet.domain.entity.PetItem
 
 class PetAdapter(
-    private val onItemClickListener: (pet: PetEntity) -> Unit
+    private val onItemClickListener: (pet: PetItem) -> Unit
 ) :
-    ListAdapter<PetEntity, PetAdapter.ViewHolder>(PetDiffCallback()) {
+    ListAdapter<PetItem, PetAdapter.ViewHolder>(PetDiffCallback()) {
     inner class ViewHolder(private val binding: ItemPetBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: PetEntity) = with(binding) {
+        fun onBind(item: PetItem) = with(binding) {
             titleTv.text = item.name
             root.setOnClickListener {
                 onItemClickListener(item)
