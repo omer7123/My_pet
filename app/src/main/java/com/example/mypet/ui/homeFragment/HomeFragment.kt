@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
 
     private fun initListener() {
         binding.addBtn.setOnClickListener {
-            findNavController().navigate(R.id.createTaskFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_createTaskFragment)
         }
     }
 

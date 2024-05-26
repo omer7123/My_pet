@@ -28,7 +28,7 @@ class PetsFragment : Fragment() {
     private fun clickListener(petEntity: PetItem) {
         val bundle = Bundle()
         bundle.putSerializable("res", petEntity)
-        findNavController().navigate(R.id.detailPetFragment, bundle)
+        findNavController().navigate(R.id.action_petsFragment_to_detailPetFragment, bundle)
     }
 
     override fun onCreateView(
@@ -50,7 +50,7 @@ class PetsFragment : Fragment() {
         binding.petRv.adapter = adapter
 
         binding.addBtn.setOnClickListener {
-            findNavController().navigate(R.id.createPetFragment)
+            findNavController().navigate(R.id.action_petsFragment_to_createPetFragment)
         }
         viewModel.getPets()
 

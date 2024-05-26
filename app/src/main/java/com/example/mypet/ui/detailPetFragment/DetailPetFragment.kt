@@ -39,7 +39,7 @@ class DetailPetFragment : Fragment() {
         val bundleForRefactor = Bundle()
         binding.refactorBtn.setOnClickListener {
             bundleForRefactor.putSerializable("res", pet)
-            findNavController().navigate(R.id.refactorPetFragment, bundleForRefactor)
+            findNavController().navigate(R.id.action_detailPetFragment_to_refactorPetFragment, bundleForRefactor)
         }
 
         arguments?.run {
