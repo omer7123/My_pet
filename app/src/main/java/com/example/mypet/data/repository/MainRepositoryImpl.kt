@@ -29,7 +29,7 @@ class MainRepositoryImpl(private val dataSource: RemoteDataSource, private val c
     }
 
     override suspend fun getToken(): String {
-        return sharedPref.getString(TOKEN, "").toString()
+        return sharedPref.getString(TOKEN, null).toString()
     }
 
     override suspend fun getPets(tokenAuth: TokenAuth): Resource<List<PetItem>> {
