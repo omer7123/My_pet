@@ -9,14 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.mypet.databinding.FragmentRefactorPetBinding
 import com.example.mypet.domain.entity.Animal
 import com.example.mypet.domain.entity.Breed
 import com.example.mypet.domain.entity.Owner
-import com.example.mypet.domain.entity.PetEntity
 import com.example.mypet.domain.entity.PetItem
 import com.example.mypet.domain.entity.PetItemUpdate
 import com.example.mypet.presentation.refactorPetFragment.RefactorPetState
@@ -132,8 +129,11 @@ class RefactorPetFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.addBtn.setOnClickListener {
 
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.addBtn.setOnClickListener {
             try {
                 val name = binding.nameTv.text.toString()
 //            val breed = binding.breedTv.text.toString()

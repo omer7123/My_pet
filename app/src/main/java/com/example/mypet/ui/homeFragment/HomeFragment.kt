@@ -2,33 +2,35 @@ package com.example.mypet.ui.homeFragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mypet.R
 import com.example.mypet.databinding.FragmentHomeBinding
-import com.example.mypet.domain.entity.TaskEntity
+import com.example.mypet.domain.entity.Task
+import com.example.mypet.presentation.homeFragment.HomeState
+import com.example.mypet.presentation.homeFragment.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
+
     private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModel()
 
-    var list = mutableListOf(
-        TaskEntity("0", "Удалить дизайн", false),
-        TaskEntity("1", "Удалить дизайн", false),
-        TaskEntity("2", "Удалить дизайн", false),
-        TaskEntity("3", "Удалить дизайн", false),
-        TaskEntity("4", "Удалить дизайн", false),
-        TaskEntity("5", "Удалить дизайн", false),
-    )
-    private val adapter = TaskAdapter(this::clickListener)
+    private val adapter = TaskAdapter(this::clickAcceptListener, this::clickItemListener)
 
-    private fun clickListener(taskEntity: TaskEntity) {
-        val newList = list.toMutableList()
-        newList.remove(taskEntity)
-        list = newList
-        adapter.submitList(newList)
+    private fun clickAcceptListener(task: Task) {
+        Log.e("TASK", task.toString())
+        viewModel.deleteTask(task.id)
+    }
+
+    private fun clickItemListener(task: Task) {
+        Log.e("TASK", task.toString())
+
     }
 
     override fun onCreateView(
@@ -36,14 +38,48 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
+        viewModel.screenState.observe(viewLifecycleOwner){
+            render(it)
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerContainer.isVisible = false
         binding.taskRv.layoutManager = LinearLayoutManager(requireContext())
         binding.taskRv.adapter = adapter
-        adapter.submitList(list)
+
+        initListener()
+        viewModel.getTasks()
+    }
+
+    private fun initListener() {
+        binding.addBtn.setOnClickListener {
+            findNavController().navigate(R.id.createTaskFragment)
+        }
+    }
+
+    private fun render(it: HomeState) {
+        when(it){
+            is HomeState.Error -> {
+                binding.progressCircular.isVisible = false
+            }
+            HomeState.Loading -> {
+                binding.progressCircular.isVisible = true
+
+            }
+            is HomeState.Success -> {
+                binding.progressCircular.isVisible = false
+                if (it.data.isNotEmpty()) {
+                    binding.recyclerContainer.isVisible = true
+                    binding.emptyTv.isVisible = false
+                }else{
+                    binding.recyclerContainer.isVisible = false
+                    binding.emptyTv.isVisible = true
+                }
+                adapter.submitList(it.data)
+            }
+        }
     }
 }

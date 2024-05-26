@@ -1,7 +1,6 @@
 package com.example.mypet.ui.createPetFragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +8,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import com.example.mypet.R
 import com.example.mypet.databinding.FragmentCreatePetBinding
-import com.example.mypet.databinding.FragmentRefactorPetBinding
 import com.example.mypet.domain.entity.NewPet
 import com.example.mypet.domain.entity.Owner
 import com.example.mypet.presentation.createPetFragment.CreatePetState
 import com.example.mypet.presentation.createPetFragment.CreatePetViewModel
-import com.example.mypet.presentation.refactorPetFragment.RefactorPetViewModel
 import com.example.mypet.util.showToast
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreatePetFragment : Fragment() {

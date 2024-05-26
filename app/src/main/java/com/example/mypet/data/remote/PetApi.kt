@@ -5,14 +5,19 @@ import com.example.mypet.domain.entity.Auth
 import com.example.mypet.domain.entity.Breed
 import com.example.mypet.domain.entity.Login
 import com.example.mypet.domain.entity.NewPet
+import com.example.mypet.domain.entity.NewTask
+import com.example.mypet.domain.entity.Owner
 import com.example.mypet.domain.entity.PetItem
 import com.example.mypet.domain.entity.PetItemUpdate
 import com.example.mypet.domain.entity.Register
+import com.example.mypet.domain.entity.Task
 import com.example.mypet.domain.entity.TokenAuth
 import com.example.mypet.domain.entity.User
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -62,4 +67,24 @@ interface PetApi {
         @Path("pet_id") id: String,
         @Body token: TokenAuth
     ): Response<PetItem>
+
+    @Headers("ngrok-skip-browser-warning: true")
+    @POST("/api/tasks")
+    suspend fun getTasks(
+        @Body token: TokenAuth
+    ): Response<List<Task>>
+
+    @Headers("ngrok-skip-browser-warning: true")
+    @POST("/api/tasks/add")
+    suspend fun createTask(
+        @Body task: NewTask
+    ): Response<Task>
+
+    @Headers("ngrok-skip-browser-warning: true")
+    @HTTP(method = "DELETE", path = "/api/tasks/delete/{task_id}", hasBody = true)
+    suspend fun deleteTask(
+        @Path("task_id") id: String,
+        @Body token: TokenAuth
+    ): Response<String>
+
 }

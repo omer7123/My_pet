@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mypet.data.remote.result.Resource
 import com.example.mypet.domain.MainRepository
-import com.example.mypet.domain.entity.PetEntity
-import com.example.mypet.domain.entity.PetItem
 import com.example.mypet.domain.entity.PetItemUpdate
 import com.example.mypet.presentation.petsFragment.PetsState
 import kotlinx.coroutines.launch

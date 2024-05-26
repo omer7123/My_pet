@@ -30,9 +30,11 @@ class RegisterFragment : Fragment() {
         viewModel.screenState.observe(viewLifecycleOwner) { state ->
             render(state)
         }
+        val token = viewModel.getToken()
 
-        if (viewModel.getToken().isNotEmpty()){
-            viewModel.auth(Login(Auth("",""), TokenAuth(viewModel.getToken())))
+        Log.e("ololo", token)
+        if (token != "null") {
+            viewModel.auth(Login(Auth("", ""), TokenAuth(viewModel.getToken())))
         }
         return binding.root
     }

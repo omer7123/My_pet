@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypet.databinding.ItemPetBinding
-import com.example.mypet.domain.entity.PetEntity
 import com.example.mypet.domain.entity.PetItem
 
 class PetAdapter(

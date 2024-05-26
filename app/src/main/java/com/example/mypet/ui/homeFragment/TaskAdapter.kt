@@ -5,18 +5,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypet.databinding.ItemTaskBinding
-import com.example.mypet.domain.entity.TaskEntity
+import com.example.mypet.domain.entity.Task
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class TaskAdapter(
-    private val onItemClickListener: (task: TaskEntity) -> Unit
+    private val onAcceptItemClickListener: (task: Task) -> Unit,
+    private val onItemClickListener: (task: Task) -> Unit
 ) :
-    ListAdapter<TaskEntity, TaskAdapter.ViewHolder>(TaskDiffCallback()) {
+    ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallback()) {
     inner class ViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: TaskEntity?) = with(binding) {
-            titleTv.text = item?.title
+        fun onBind(item: Task) = with(binding) {
+            titleTv.text = item.title
+            val date = convertLongToDate(item.date)
+            petTv.text = date
+
             madeBtn.setOnClickListener {
-                onItemClickListener(item!!)
+                onAcceptItemClickListener(item)
+            }
+
+            binding.root.setOnClickListener {
+                onItemClickListener(item)
             }
         }
     }
@@ -28,5 +39,10 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(getItem(position))
+    }
+
+    private fun convertLongToDate(time: Long): String {
+        val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        return format.format(Date(time))
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mypet.presentation.authFragment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,6 +35,7 @@ class AuthViewModel(private val repository: MainRepository) : ViewModel() {
 
     private fun saveToken(token: String) {
         viewModelScope.launch(handler) {
+            Log.e("TOKEN VM", token)
             repository.saveToken(token)
         }
     }

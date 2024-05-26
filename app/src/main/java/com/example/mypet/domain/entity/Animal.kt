@@ -45,7 +45,11 @@ data class PetItem(
     val name: String,
     val owner_id: String,
     val weight: Int
-) : Serializable
+) : Serializable{
+    override fun toString(): String {
+        return name
+    }
+}
 
 data class PetItemUpdate(
     val id: String,

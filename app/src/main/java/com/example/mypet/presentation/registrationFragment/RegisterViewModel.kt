@@ -62,6 +62,7 @@ class RegisterViewModel(private val repository: MainRepository) : ViewModel() {
         var token = ""
         viewModelScope.launch {
             token = repository.getToken()
+            if (token.isNullOrEmpty()) token =""
         }
         return token
     }

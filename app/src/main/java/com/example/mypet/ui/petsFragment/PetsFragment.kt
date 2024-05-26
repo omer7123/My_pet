@@ -1,18 +1,15 @@
 package com.example.mypet.ui.petsFragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mypet.R
 import com.example.mypet.databinding.FragmentPetsBinding
-import com.example.mypet.domain.entity.PetEntity
 import com.example.mypet.domain.entity.PetItem
 import com.example.mypet.presentation.petsFragment.PetsState
 import com.example.mypet.presentation.petsFragment.PetsViewModel

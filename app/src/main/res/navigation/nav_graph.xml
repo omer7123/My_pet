@@ -55,4 +55,9 @@
         android:name="com.example.mypet.ui.createPetFragment.CreatePetFragment"
         android:label="fragment_create_pet"
         tools:layout="@layout/fragment_create_pet" />
+    <fragment
+        android:id="@+id/createTaskFragment"
+        android:name="com.example.mypet.ui.createTaskFragment.CreateTaskFragment"
+        android:label="fragment_create_task"
+        tools:layout="@layout/fragment_create_task" />
 </navigation>
