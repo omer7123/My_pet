@@ -34,17 +34,17 @@
         <action
             android:id="@+id/action_homeFragment_to_createTaskFragment"
             app:destination="@id/createTaskFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_up"
-            app:popExitAnim="@anim/slide_out_down" />
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/action_homeFragment_to_detailTaskFragment"
             app:destination="@id/detailTaskFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_up"
-            app:popExitAnim="@anim/slide_out_down" />
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_from_left"
+            app:popExitAnim="@anim/slide_in_right" />
     </fragment>
     <fragment
         android:id="@+id/petsFragment"
@@ -53,10 +53,10 @@
         <action
             android:id="@+id/action_petsFragment_to_detailPetFragment"
             app:destination="@id/detailPetFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_up"
-            app:popExitAnim="@anim/slide_out_down" />
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_from_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_from_right" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -71,17 +71,17 @@
         <action
             android:id="@+id/action_detailPetFragment_to_refactorPetFragment"
             app:destination="@id/refactorPetFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_up"
-            app:popExitAnim="@anim/slide_out_down" />
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_from_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_from_right" />
         <action
             android:id="@+id/action_detailPetFragment_to_createPetFragment"
             app:destination="@id/createPetFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_up"
-            app:popExitAnim="@anim/slide_out_down" />
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_from_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_from_right" />
     </fragment>
     <fragment
         android:id="@+id/refactorPetFragment"
