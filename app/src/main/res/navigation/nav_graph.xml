@@ -30,11 +30,34 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mypet.ui.homeFragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailTaskFragment"
+            app:destination="@id/detailTaskFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
     <fragment
         android:id="@+id/petsFragment"
         android:name="com.example.mypet.ui.petsFragment.PetsFragment"
-        android:label="PetsFragment" />
+        android:label="PetsFragment" >
+        <action
+            android:id="@+id/action_petsFragment_to_detailPetFragment"
+            app:destination="@id/detailPetFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.mypet.ui.calendarFragment.CalendarFragment"
@@ -44,7 +67,22 @@
         android:id="@+id/detailPetFragment"
         android:name="com.example.mypet.ui.detailPetFragment.DetailPetFragment"
         android:label="fragment_detail_pet"
-        tools:layout="@layout/fragment_detail_pet" />
+        tools:layout="@layout/fragment_detail_pet" >
+        <action
+            android:id="@+id/action_detailPetFragment_to_refactorPetFragment"
+            app:destination="@id/refactorPetFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+        <action
+            android:id="@+id/action_detailPetFragment_to_createPetFragment"
+            app:destination="@id/createPetFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
     <fragment
         android:id="@+id/refactorPetFragment"
         android:name="com.example.mypet.ui.refactorPetFragment.RefactorPetFragment"
@@ -60,4 +98,9 @@
         android:name="com.example.mypet.ui.createTaskFragment.CreateTaskFragment"
         android:label="fragment_create_task"
         tools:layout="@layout/fragment_create_task" />
+    <fragment
+        android:id="@+id/detailTaskFragment"
+        android:name="com.example.mypet.ui.detailTaskFragment.DetailTaskFragment"
+        android:label="fragment_detail_task"
+        tools:layout="@layout/fragment_detail_task" />
 </navigation>

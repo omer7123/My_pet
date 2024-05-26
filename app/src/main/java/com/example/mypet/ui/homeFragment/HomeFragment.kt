@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
     private fun clickItemListener(task: Task) {
         Log.e("TASK", task.toString())
-
+        findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
     }
 
     override fun onCreateView(
