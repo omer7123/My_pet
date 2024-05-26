@@ -21,4 +21,5 @@ interface MainRepository {
     suspend fun getBreeds(animalId: String): Resource<List<Breed>>
     suspend fun addPet(pet: NewPet): Resource<PetItem>
     suspend fun updatePet(pet: PetItemUpdate): Resource<PetItem>
+    suspend fun getDetailPet(id: String, tokenAuth: TokenAuth): Resource<PetItem>
 }

@@ -55,4 +55,11 @@ interface PetApi {
     @Headers("ngrok-skip-browser-warning: true")
     @PUT("/api/pets/update")
     suspend fun updatePet(@Body pet: PetItemUpdate): Response<PetItem>
+
+    @Headers("ngrok-skip-browser-warning: true")
+    @POST("/api/pets/{pet_id}")
+    suspend fun getDetailPet(
+        @Path("pet_id") id: String,
+        @Body token: TokenAuth
+    ): Response<PetItem>
 }

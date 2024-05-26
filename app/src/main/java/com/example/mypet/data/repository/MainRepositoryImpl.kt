@@ -52,6 +52,10 @@ class MainRepositoryImpl(private val dataSource: RemoteDataSource, private val c
         return dataSource.updatePet(pet)
     }
 
+    override suspend fun getDetailPet(id: String, tokenAuth: TokenAuth): Resource<PetItem> {
+        return dataSource.getDetailPet(id, tokenAuth)
+    }
+
     override suspend fun saveToken(token: String) {
         sharedPref.edit().apply {
             putString(TOKEN, token)

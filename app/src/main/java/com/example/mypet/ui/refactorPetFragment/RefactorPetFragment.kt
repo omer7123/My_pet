@@ -34,10 +34,7 @@ class RefactorPetFragment : Fragment() {
     private var selectedIdBreed: String = ""
 
     private var pet_id = ""
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getAnimals()
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -101,7 +98,7 @@ class RefactorPetFragment : Fragment() {
             }
 
             is RefactorPetState.Success -> {
-
+                findNavController().popBackStack()
             }
         }
     }
@@ -112,6 +109,7 @@ class RefactorPetFragment : Fragment() {
 
         initListenerSpinnerAnimals()
         initListener()
+        viewModel.getAnimals()
 
     }
 
@@ -136,27 +134,33 @@ class RefactorPetFragment : Fragment() {
     private fun initListener() {
         binding.addBtn.setOnClickListener {
 
-            val name = binding.nameTv.text.toString()
+            try {
+                val name = binding.nameTv.text.toString()
 //            val breed = binding.breedTv.text.toString()
-            val age = binding.ageTv.text.toString()
-            val weight = binding.weightTv.text.toString()
-            val height = binding.heightTv.text.toString()
+                val age = binding.ageTv.text.toString()
+                val weight = binding.weightTv.text.toString()
+                val height = binding.heightTv.text.toString()
 
-            val ageInt = if (age.isNotEmpty()) age.toIntOrNull() else null
-            val weightInt = if (weight.isNotEmpty()) weight.toIntOrNull() else null
-            val heightInt = if (height.isNotEmpty()) height.toIntOrNull() else null
+//                val ageInt = if (age.isNotEmpty()) age.toIntOrNull() else 0
+//                val weightInt = if (weight.isNotEmpty()) weight.toIntOrNull() else 0
+//                val heightInt = if (height.isNotEmpty()) height.toIntOrNull() else 0
 
-            val animal = binding.animalSpinner.selectedItem as Animal
-            val breed = binding.spinnerBreed.selectedItem as Breed
-            val animal_id = animal.id
-            val breed_id = breed.id
-            val result = PetItemUpdate(pet_id, name, age.toInt(),"Мужской",0,
-                animal_id, breed_id, 0, 0,"", Owner("")
-            )
+                val animal = binding.animalSpinner.selectedItem as Animal
+                val breed = binding.spinnerBreed.selectedItem as Breed
+                val animal_id = animal.id
+                val breed_id = breed.id
+                val result = PetItemUpdate(
+                    pet_id, name, age.toInt(), "Мужской", 0,
+                    animal_id, breed_id, weight.toInt(), height.toInt(), "", Owner("")
+                )
 
-            viewModel.updatePet(result)
+                viewModel.updatePet(result)
+            } catch (e: Exception) {
+                requireContext().showToast("Поля с численными данными не могут содержать символы")
+            }
 //            setFragmentResult("res", bundleOf("res" to result))
 //            findNavController().popBackStack()
+
         }
     }
 

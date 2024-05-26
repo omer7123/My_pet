@@ -2,6 +2,7 @@ package com.example.mypet.di
 
 import com.example.mypet.presentation.authFragment.AuthViewModel
 import com.example.mypet.presentation.createPetFragment.CreatePetViewModel
+import com.example.mypet.presentation.detailPetFragment.DetailPetViewModel
 import com.example.mypet.presentation.refactorPetFragment.RefactorPetViewModel
 import com.example.mypet.presentation.petsFragment.PetsViewModel
 import com.example.mypet.presentation.registrationFragment.RegisterViewModel
@@ -34,6 +35,12 @@ val viewModule = module {
 
     viewModel {
         CreatePetViewModel(
+            get()
+        )
+    }
+
+    viewModel {
+        DetailPetViewModel(
             get()
         )
     }

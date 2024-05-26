@@ -40,4 +40,8 @@ class RemoteDataSource(val petApi: PetApi) : BaseDataSource() {
     suspend fun updatePet(pet: PetItemUpdate): Resource<PetItem> = getResult {
         petApi.updatePet(pet)
     }
+
+    suspend fun getDetailPet(id: String, tokenAuth: TokenAuth): Resource<PetItem> = getResult {
+        petApi.getDetailPet(id, tokenAuth)
+    }
 }
