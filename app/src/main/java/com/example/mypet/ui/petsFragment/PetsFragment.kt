@@ -53,12 +53,6 @@ class PetsFragment : Fragment() {
             findNavController().navigate(R.id.action_petsFragment_to_createPetFragment)
         }
         viewModel.getPets()
-
-//        setFragmentResultListener("res") { _, result ->
-//            val pet = result.getSerializable("res") as PetEntity
-//            list.add(pet)
-//            adapter.submitList(list)
-//        }
     }
 
     private fun render(state: PetsState) {

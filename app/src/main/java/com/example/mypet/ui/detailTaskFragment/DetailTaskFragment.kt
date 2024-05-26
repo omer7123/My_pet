@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mypet.R
+import com.example.mypet.databinding.FragmentDetailTaskBinding
 
 class DetailTaskFragment : Fragment() {
 
-
+    private lateinit var binding: FragmentDetailTaskBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_task, container, false)
+    ): View {
+        binding = FragmentDetailTaskBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
 

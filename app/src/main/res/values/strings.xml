@@ -4,4 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_pet">My pet</string>
     <string name="empty_task">У вас пока нет задач, добавьте новую, чтобы она отобразилась здесь</string>
+    <string name="describe_example">Нужно сводить его в больниу ведет себя плохо, задумываюсь над кастрацией, совсем плохо себя ведет еще и не слушает меня, нет для него авторитета</string>
+    <string name="accep">Относится к:</string>
+    <string name="name">Паша</string>
 </resources>
